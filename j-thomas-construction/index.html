@@ -37,8 +37,9 @@
   .btn-ghost{border:1px solid rgba(244,239,230,.45);color:#f4efe6}
   .btn-ghost:hover{border-color:var(--gold)}
 
-  /* sections */
-  section{padding:104px 0}
+  /* sections (section also has .wrap, whose padding:0 22px would zero the vertical -
+     so override with the more specific section.wrap) */
+  section.wrap{padding-top:104px;padding-bottom:104px}
   .lead{font-size:1.05rem;color:var(--muted);max-width:60ch;margin:14px 0 0}
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:38px}
   .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:26px}
@@ -60,7 +61,7 @@
   @media(max-width:760px){
     .cards{grid-template-columns:1fr}
     .hero-inner{padding:64px 22px 56px}
-    section{padding:72px 0}
+    section.wrap{padding-top:72px;padding-bottom:72px}
   }
 </style>
 </head>
