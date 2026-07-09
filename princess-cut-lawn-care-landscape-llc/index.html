@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Princess Cut Lawn Care &amp; Landscape LLC — website preview by ZeroBeatLabs</title>
+<title>Princess Cut Lawn Care &amp; Landscape LLC - website preview by ZeroBeatLabs</title>
 <meta name="robots" content="noindex">
 <meta name="description" content="A free website preview built for Princess Cut Lawn Care &amp; Landscape LLC in Davison, Michigan by ZeroBeatLabs.">
 <style>
@@ -31,7 +31,8 @@
   .sub{max-width:48ch;margin:20px 0 30px;font-size:1.08rem;color:#e7e0d4}
   .cta{display:flex;gap:14px;flex-wrap:wrap}
   .btn{display:inline-block;padding:14px 22px;border-radius:8px;text-decoration:none;
-    font-weight:600;font-size:1rem}
+    font-weight:600;font-size:1rem;font-family:inherit;background:none;border:none;
+    cursor:pointer;appearance:none;-webkit-appearance:none}
   .btn-primary{background:var(--gold);color:#241f14}
   .btn-primary:hover{filter:brightness(1.06)}
   .btn-ghost{border:1px solid rgba(244,239,230,.45);color:#f4efe6}
@@ -53,6 +54,17 @@
   .band p{color:#ded6c8;max-width:58ch;margin:16px 0 26px}
   .meta{margin-top:30px;font-size:.92rem;color:#b7ae9d}
   .meta b{color:#f4efe6;font-weight:600}
+
+  /* email capture (in the band, replaces a plain mailto link when a Web3Forms key is set) */
+  .capture{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:2px}
+  .capture input[type=email]{padding:13px 16px;border-radius:8px;
+    border:1px solid rgba(244,239,230,.35);background:rgba(244,239,230,.08);
+    color:#f4efe6;font-size:1rem;min-width:220px;font-family:inherit}
+  .capture input[type=email]::placeholder{color:#b7ae9d}
+  .capture input[type=email]:focus{outline:2px solid var(--gold);outline-offset:1px}
+  .capture .hp{display:none}
+  .capture-fine{font-size:.82rem;color:#b7ae9d;margin-top:10px}
+  .capture-ok{font-size:.95rem;color:var(--gold);margin-top:10px}
 
   /* disclaimer + footer */
   footer{padding:40px 0 60px;color:var(--muted);font-size:.86rem}
@@ -93,28 +105,40 @@
   <div class="band">
     <div class="wrap">
       <h2>I built this preview for you. The real one is better.</h2>
-      <p>I am Sam with ZeroBeatLabs, a local shop in Grand Blanc. I made this draft to
+      <p>I am Sam with ZeroBeatLabs. I made this draft to
         show what a clean, fast, search-ready site could look like for
         Princess Cut Lawn Care &amp; Landscape LLC. It is yours to react to, no strings. If you like the
         direction, a short call is the next step, and the finished site is built around
         your real photos, services, and voice.</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://calendar.app.google/ZzgzTAhCFCk1oxBH8">Book a free 10-minute call</a>
-        <a class="btn btn-ghost" href="mailto:hello@zerobeatlabs.org">Email me</a>
       </div>
+      <form id="leadcap" class="capture" action="https://api.web3forms.com/submit" method="POST"><input type="hidden" name="access_key" value="8d8bd7ae-9890-4df0-8620-85742636b8d9"><input type="hidden" name="subject" value="Demo interest: Princess Cut Lawn Care &amp; Landscape LLC"><input type="hidden" name="from_name" value="ZeroBeatLabs demo page"><input type="hidden" name="business" value="Princess Cut Lawn Care &amp; Landscape LLC"><input type="hidden" name="demo_slug" value="princess-cut-lawn-care-landscape-llc"><input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off"><input type="email" name="email" placeholder="you@business.com" required autocomplete="email" aria-label="Email"><button class="btn btn-ghost" type="submit">Keep me posted</button></form><p id="leadcap-ok" class="capture-ok" hidden>Got it, I will be in touch.</p><p class="capture-fine">No spam, no list. I reply personally from hello@zerobeatlabs.org. <a href="https://zerobeatlabs.org/privacy/">Privacy</a>.</p>
       <p class="meta"><b>Princess Cut Lawn Care &amp; Landscape LLC</b> &middot; 9448 Sandy Hollow Ln, Davison, MI 48423, USA &middot; (810) 813-0697</p>
     </div>
   </div>
 
   <footer class="wrap">
-    <p>Built by <b>ZeroBeatLabs</b> &middot; Grand Blanc, MI &middot;
+    <p>Built by <b>ZeroBeatLabs</b> &middot;
        <a href="mailto:hello@zerobeatlabs.org">hello@zerobeatlabs.org</a> &middot;
        <a href="tel:8102304295">(810) 230-4295</a> &middot;
        <a href="https://zerobeatlabs.org/privacy/">Privacy</a></p>
     <div class="note">This is a free, unofficial website preview that ZeroBeatLabs
       created to show what is possible for Princess Cut Lawn Care &amp; Landscape LLC. It is not an existing or
-      affiliated website, and it uses a sample photo, not your own. Tell me to take it
-      down anytime and I will. &copy; 2026 ZeroBeatLabs.</div>
+      affiliated website. Any photos shown are stock or samples, not your own. Tell me
+      to take it down anytime and I will. &copy; 2026 ZeroBeatLabs.</div>
   </footer>
+  <script>
+    var f=document.getElementById('leadcap');
+    if(f){f.addEventListener('submit',function(e){
+      e.preventDefault();
+      var b=f.querySelector('button');b.disabled=true;b.textContent='Sending...';
+      fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}})
+        .then(function(r){return r.json()})
+        .then(function(){f.hidden=true;document.getElementById('leadcap-ok').hidden=false;})
+        .catch(function(){b.disabled=false;b.textContent='Keep me posted';
+          alert('Something went wrong. Please email hello@zerobeatlabs.org instead.');});
+    });}
+  </script>
 </body>
 </html>
