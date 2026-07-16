@@ -103,8 +103,8 @@
       e.preventDefault();
       var b=f.querySelector('button');b.disabled=true;b.textContent='Sending...';
       fetch(f.action,{method:'POST',body:new FormData(f),headers:{Accept:'application/json'}})
-        .then(function(r){return r.json()})
-        .then(function(){f.reset();document.getElementById('ok').hidden=false;b.textContent='Sent';})
+        .then(function(r){return r.json().then(function(d){return{ok:r.ok,d:d}})})
+        .then(function(res){if(!res.ok||!res.d.success){throw new Error(res.d&&res.d.message||'failed')}f.reset();document.getElementById('ok').hidden=false;b.textContent='Sent';})
         .catch(function(){b.disabled=false;b.textContent='Send me my free preview';
           alert('Something went wrong. Please email hello@zerobeatlabs.org instead.');});
     });}
